@@ -26,3 +26,47 @@ Mientras que en **Node.js** no tenemos un **DOM** ni un objeto windows, lo que s
 - events
 
 ![](https://static.platzi.com/media/user_upload/Mesa%20de%20trabajo%202-f92e8007-a0be-4bbe-9d53-98bc5f0180db.jpg)
+
+#### Stream
+
+Los **Streams** son una colección de datos como los arrays o strings sólo que se van procesando pedazo por pedazo, esta capacidad los hace muy poderosos porque podemos manejar una gran cantidad de datos de manera óptima.
+
+##### Los Readable y Writeable streams tienen los siguientes eventos y funciones respectivamente:
+
+##### Readable
+
+**Eventos**
+
+- data. Se dispara cuando recibe datos.
+- end. Se dispara cuando termina de recibir datos.
+- error. Se dispara cuando hay un error.
+
+**Funciones**
+
+- pipe
+- unpipe
+- read
+- push
+
+##### Writeable
+
+**Eventos**
+
+- drain. Se dispara cuando emite datos.
+- finish. Se dispara cuando termina de emitir.
+- error. Se dispara cuando hay un error.
+
+**Funciones**
+
+- write
+- end
+
+Estos eventos son heredados de la clase EventEmitter.
+
+##### Duplex
+
+Duplex: implementa los métodos write y read a la vez.
+
+##### Transform
+
+Transform: es similar a Duplex pero con una sintaxis más corta.

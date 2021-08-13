@@ -1,0 +1,30 @@
+{
+  "name": "backend-node",
+  "version": "1.0.0",
+  "description": "**Node.js** es un entorno de ejecución para _JavaScript_ construido con el motor _JavaScript_ V8 de **Chrome**. _JavaScript_ es un lenguaje interpretado pero en **Node.js** tenemos algo llamado el JIT Compiler que es una especie de monitor que optimiza fragmentos de código que son ejecutados frecuentemente.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "DEBUG=app:* nodemon ./src/index",
+    "start": "NODE_ENV=production node ./src/index",
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
+  }
+}

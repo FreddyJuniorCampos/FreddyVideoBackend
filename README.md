@@ -166,3 +166,23 @@ Envía una respuesta HTTP. El parámetro body puede ser un objeto tipo Buffer, u
     res.send("<p>some html</p>");
     res.status(404).send("Sorry, we cannot find that!");
     res.status(500).send({ error: "something blew up" });
+
+#### Anatomia de una API Restful
+
+**REST** (Representational State Transfer) es un estilo de arquitectura para construir web services, no es un estándar pero si una especificación muy usada.
+
+Las peticiones **HTTP** van acompañadas de un _“verbo_” que define el tipo de petición:
+
+- **GET**. Lectura de datos.
+- **PUT**. Reemplazar datos.
+- **PATCH**. Actualizar datos en un recurso específico.
+- **POST**. Creación de datos.
+- **DELETE**. Eliminación de datos.
+
+No es recomendable habilitar un endpoint de tipo **PUT** y **DELETE** para toda nuestra colección de datos, sólo hacerlos para recursos específicos, ya que no queremos que por error se puedan borrar todos nuestros datos.
+
+#### Clean Architecture
+
+La arquitectura tradicional **MVC** se queda corta en aplicaciones modernas, por eso necesitamos una arquitectura diferente cómo la **Clean Architecture** que tiene una capa de servicios para manejar la lógica de negocio.
+
+![Clean arquitecture](https://www.dropbox.com/s/n06gjhvukutegr1/clean%20architecture.png?raw=1 'Clean arquitecture')

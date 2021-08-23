@@ -272,3 +272,39 @@ Este **middleware** nos permite evitar preocuparnos por escribir las rutas con o
 **Passport** es un **middleware** que nos permite establecer diferentes estrategias de autenticación a nuestras aplicaciones. https://github.com/jaredhanson/passport
 
 > Puedes encontrar más middlewares populares en el siguiente enlace: http://expressjs.com/en/resources/middleware.html
+
+#### Debuggin e inspect
+
+##### debugging
+
+Para aprovechar por completo la funcionalidad de **debugging** que implementa **Express**, es recomendable cambiar todos los **console.log** por **debug** haciendo uso de un namespace de la siguiente forma:
+
+    const debug = require("debug")("app:server");
+    debug("Hello debug");
+
+De esta manera si ejecutamos nuestra aplicación con el comando **DEBUG=app:\* node index.js** nos mostrará los diferentes logs.
+
+Los namespaces recomendables son los siguientes:
+
+- **app:server** para todo lo relacionado con el inicio del servidor como el mensaje Listening on http://localshost
+- **app:db** para todo lo relacionado con logs de las bases de datos, inicialización y ejecución de scripts.
+- **app:error** para todo lo relacionado con errores en nuestra aplicación.
+
+Nótese que esta convención es opcional, es decir, tu puedes seleccionar cualquier namespace. Lo más importante es que sea el mismo que se pasará en la opción **DEBUG**.
+
+**Express.js** por defecto ya trae unos logs de **debugging** por defecto los podemos activar mediante la variable de entorno **DEBUG=express:\*.**
+
+Por lo que es recomendable los scripts en el archivo package.json de la siguiente manera:
+
+      "scripts": {
+        "dev": "DEBUG=express:*,app:* nodemon index",
+        "debug": "DEBUG=express:*,app:* npm run start",
+      },
+
+##### Inspect
+
+El modulo **inspect** de ** Node.js**nos permite ejecutar un ambiente para hacer **debugging** de código haciendo uso de la **consola de desarrolladores de Google**. Para ejecutarlo en modo desarrollo con nodemon basta con agregar el **flag --inspect** por lo que es recomendable el siguiente script en el archivo package.json
+
+     "scripts": {
+        "inspect": "DEBUG=express:*,app:* nodemon --inspect index"
+      },

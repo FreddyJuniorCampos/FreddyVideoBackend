@@ -1,0 +1,22 @@
+{
+  "name": "freddyvideos",
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/index.js"
+    }
+  ],
+  "env": {
+    "DB_USER": "@freddyvideos-db-user",
+    "DB_PASSWORD": "@freddyvideos-db-password",
+    "DB_HOST": "@freddyvideos-db-host",
+    "DB_NAME": "@freddyvideos-db-name"
+  }
+}

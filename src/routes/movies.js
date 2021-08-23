@@ -1,6 +1,13 @@
 const express = require('express');
 const MoviesService = require('../services/movies');
 
+const {
+  movieIdSchema,
+  createMovieSchema,
+  updateMovieSchema,
+} = require('../utils/schema/movies');
+const validationHandler = require('../utils/middleware/validationHandler');
+
 function moviesApi(app) {
   const router = express.Router();
   app.use('/api/movies', router);
@@ -9,15 +16,29 @@ function moviesApi(app) {
 
   // Routes
   router.get('/', getMovies);
-  router.get('/:movieId', getMovie);
-  router.post('/', createMovie);
-  router.put('/:movieId', updateMovie);
-  router.delete('/:movieId', deleteMovie);
+  router.get(
+    '/:movieId',
+    validationHandler({ movieId: movieIdSchema }, 'params'),
+    getMovie
+  );
+  router.post('/', validationHandler(createMovieSchema), createMovie);
+  router.put(
+    '/:movieId',
+    validationHandler({ movieId: movieIdSchema }, 'params'),
+    validationHandler(updateMovieSchema),
+    updateMovie
+  );
+  router.delete(
+    '/:movieId',
+    validationHandler({ movieId: movieIdSchema }),
+    deleteMovie
+  );
 
   // Functions
   async function getMovies(req, res, next) {
     const { tags } = req.query;
     try {
+      // throw new Error('Error getting movies');
       const movies = await moviesService.getMovies({ tags });
 
       res.status(200).json({
